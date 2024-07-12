@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>tab 메뉴 만들기 1</title>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script lang="java">
+        $(function(){
+
+            $(".box h2").click(function(){
+                
+                $(".box h2").removeClass("on");
+                $(this).addClass("on");
+
+                $(".box ul").hide();
+                $(this).next().show();
+
+            })// clilk.box h2
+
+
+            $(".tab h2").click(function(){
+                $(".tab h2").removeClass("act");
+                $(this).addClass("act");
+
+                var n = $(this).index();
+                console.log(n);
+
+                $(".cont ul").hide();
+                $(".cont ul").eq(n).show();
+
+            })// clilk.tab h2
+
+
+
+        })//jquery
+    </script>
+
+    <style type="text/css">
+        *{margin: 0; padding: 0;}
+        ul,li,ol{list-style: none;}
+        
+        .box{
+            width: 400px;
+            height: 200px;
+            /* border: 1px solid violet; */
+            position: relative;
+            margin: 10px;
+        }
+
+        .box h2{
+            position: absolute;
+            font-size: 14px;
+            width: 80px; 
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+            background-color: lavender;
+            cursor: pointer;
+            border-radius: 10px 0;
+        }
+
+        .box h2.on{background-color: lightpink;}
+
+        .gallery h2{left: 100px;}
+        
+        .box ul{
+            position: absolute;
+            top: 30px;
+            width: 90%;
+            height: 170px; /* top에서 30뺀 값 */
+            background-color: lightpink;
+        }
+
+        .notice ul{}
+        .gallery ul{ display: none; }
+
+        .tab{
+            width: 400px;
+            height: 200px;
+            margin: 100px;
+            border: 10px solid black;
+        }
+
+        .title{}
+        .title h2{
+            font-size: 14px;
+            width: 100px;
+            height: 35px; line-height: 35px;
+            text-align: center;
+            background-color: antiquewhite;
+            display: inline-block;
+            cursor: pointer;
+        }
+        .title h2.act{
+            background-color: aquamarine;
+        }
+
+        .cont{
+            position: relative;
+        }
+        .cont ul{
+            position: absolute;
+            background-color: aquamarine;
+            width: 100%;
+            height: 165px;
+        }
+
+        .cont2{display: none;}
+
+
+
+    </style>
+
+
+
+
+</head>
+<body>
+
+    <div class="box">
+
+
+        <div class="notice">
+            <h2 class="on">공지사항</h2>
+            <ul>
+                <li>공지사항 1</li>
+                <li>공지사항 2</li>
+                <li>공지사항 3</li>
+                <li>공지사항 4</li>
+            </ul>
+        </div><!-- notice -->
+
+        <div class="gallery">
+            <h2>갤러리</h2>
+            <ul>
+                <li>이미지1</li>
+                <li>이미지2</li>
+                <li>이미지3</li>
+            </ul>
+        </div><!-- gallery -->
+
+
+    </div><!-- box -->
+
+
+    <div class="tab">
+
+        <div class="title">
+            <h2 class="act">공지사항</h2>
+            <h2>갤러리</h2>
+        </div><!-- title -->
+
+        <div class="cont">
+            <ul class="cont1">
+                <li>공자사항1</li>
+                <li>공자사항2</li>
+                <li>공자사항3</li>
+                <li>공자사항4</li>
+            </ul>
+
+            <ul class="cont2">
+                <li>이미지1</li>
+                <li>이미지2</li>
+                <li>이미지3</li>
+            </ul>
+        </div><!-- cont -->
+
+
+    </div><!-- tab -->
+
+    
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        *{margin: 0; padding: 0;}
+        ul,li,ol{list-style: none;}
+
+        body{
+            background: #555;
+            padding: 60px;
+        }
+
+        .box{
+            margin-top: 50px;
+            text-align: center;
+        }
+
+        .gallery{
+            width: 100px;
+            height: 100px;
+            border: 4px solid #000;
+            display: inline-block;
+            position: relative;
+        }
+        
+        .photo{
+            width: 600px;
+            height: 100px;
+            position: absolute;
+            top: 0; 
+            left: -300px; /* 4번부터 보고싶어서 -300 */
+        }
+
+        .photo li{
+            width: 100px;
+            height: 100px;
+            float: left;
+            border-left: 1px dotted white;
+            box-sizing: border-box;
+        }
+        
+        .controls{margin-top: 50px; text-align: center;}
+        .controls button{
+            width: 150px; height: 40px;
+            /* padding: 10px 20px; */
+            cursor: pointer;
+            /* background-color: transparent; */
+            background-color: #333; font-weight: bold;
+        }
+    </style>
+
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script lang="java">
+
+        $(function(){
+
+            // photo 왼쪽으로 -100이동 left-300초기값
+
+            var stop_move = setInterval( left_move , 3000);
+
+            function left_move(){
+                
+                $(".photo").animate({left : "-=100px"}, 1000, function(){
+                    $(".photo").append( $(".photo li").eq(0) );
+                    $(".photo").css({left : "-300px"})
+                })//animate
+                
+            }//left_move
+
+            $(".photo , controls button").hover(function(){
+                clearInterval(stop_move)
+            }, function(){
+                stop_move = setInterval( left_move , 3000);
+            })//hover
+
+            $(".left").click(function(){
+                left_move();
+            })
+
+            function right_move(){
+                $(".photo").animate({left : "+=100px"}, 1000, function(){
+                    $(".photo").css({left : "-300px"});
+                    $(".photo").prepend( $(".photo li").eq(5))
+                    // $(".photo").prepend( $(".photo li").last())
+                })
+            }// right move
+
+            $(".right").click(function(){
+                right_move();
+            })
+
+            
+
+
+        })// j end
+    </script>
+
+
+</head>
+<body>
+    
+
+    <h1>moving gallery</h1>
+
+    <div class="box">
+
+        <div class="gallery">
+
+            <ul class="photo">
+                <li>photo1</li>
+                <li>photo2</li>
+                <li>photo3</li>
+                <li>photo4</li>
+                <li>photo5</li>
+                <li>photo6</li>
+            </ul>
+        </div><!-- gallery -->
+
+        <div class="controls">
+            <button class="left">left</button>
+            <button class="right">right</button>
+        </div><!-- controls -->
+
+    </div><!-- box -->
+
+
+</body>
+</html>

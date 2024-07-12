@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+        *{margin: 0; padding: 0;}
+        /* ul,li,ol{list-style: none;} */
+        /* a{text-decoration: none; color: inherit;} */
+
+        .wrap{
+            width: 700px;
+            margin: 100px auto;
+            border: 2px solid deepskyblue;
+            text-align: center;
+        }
+
+        .view{
+            border: 1px solid hotpink;
+            padding-top: 700px;
+        }
+
+        .view img{
+            transform: scale(0);
+            opacity: 0;
+            transition: all 0.3s;
+        }
+
+        .view img.ani{
+            transform: scale(1);
+            opacity: 1;
+        }
+
+        .view img:hover{filter: sepia() blur(5px);}
+
+        .box{
+            position: relative;
+            left: -800px;
+            opacity: 0;
+            transition: all 0.5s;
+        }
+
+        .box.in{
+            left: 0;
+            opacity: 1;
+        }
+
+        .box2{
+            position: absolute;
+            right: -800px;
+            top: 1300px;
+            opacity: 0;
+            transition: all 0.5s 0.3s;
+        }
+
+        .box2.in{
+            right: 0px;
+            opacity: 1;
+        }
+
+        
+        </style>
+    
+        <script src="js/jquery-3.7.1.js"></script>
+
+        <script lang="java">
+    
+            $(function(){
+
+            })// jquery
+
+            $(document).scroll(function(){
+                // $(document).scrollTop(); 이거도 가능
+                var t = $(this).scrollTop();
+                console.log(t);
+
+                if(t >= 80){
+                    $(".view img").each(function(i){
+                        setTimeout( function(){$(".view img").eq(i).addClass("ani")}, i * 300);
+                    })//each
+                }else{
+                    $(".view img").each(function(i){
+                        setTimeout( function(){$(".view img").eq(i).removeClass("ani")}, i * 300);
+                    })//each
+                }//if
+
+
+                if(t >=100){
+                    $(".box").addClass("in");
+                    $(".box2").addClass("in");
+                }else{
+                    $(".box").removeClass("in");
+                    $(".box2").removeClass("in");
+                }
+
+
+
+            })//scroll
+
+        </script>
+
+</head>
+<body>
+
+
+    <div class="wrap">
+
+        <h1>스크롤하면 차례대로 실행되는 애니메이션 ▼</h1>
+
+        <div class="view">
+            <img src="img/icon01.png" alt="icon01">
+            <img src="img/icon02.png" alt="icon02">
+            <img src="img/icon03.png" alt="icon03">
+        </div><!-- view -->
+
+        <p>이미지에 마우스를 올려 보세요 hover ▲ </p>
+
+    </div><!-- wrap -->
+
+    <div class="box">
+        <img src="img/002.jpg" alt="car">
+    </div>
+
+    <div class="box2">
+        <img src="img/003.jpg" alt="car">
+    </div>
+
+    
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style type="text/css">
+    /* *{margin: 0; padding: 0;}
+    ul,li,ol{list-style: none;} */
+
+    body{height: 10000px;}
+
+    .quick{
+        width: 150px;
+        padding: 20px;
+        border: 7px solid dodgerblue;
+        border-radius: 17px;
+        background-color: linen;
+        position: absolute;
+        top: 0; right: 0;
+        margin-top: 200px;
+        transition: all 0.5s;
+    }
+
+    
+    </style>
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script lang="java">
+
+        $(function(){
+        })// jquery
+
+        $(window).scroll(function(){
+
+            var top = $(window).scrollTop();
+            console.log(top)
+            $(".quick").css({top : top})
+
+        })// scroll
+
+    </script>
+
+</head>
+<body>
+
+    <div class="quick">
+        <ul>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#">4</a></li>
+            <li><a href="#">5</a></li>
+        </ul>
+    </div><!-- quick -->
+
+
+    
+</body>
+</html>

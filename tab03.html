@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>top slide img</title>
+
+    <style type="text/css">
+        *{margin: 0; padding: 0;}
+        ul,li{list-style: none;}
+        a{text-decoration: none; color: inherit;}
+
+        body{background-color: darkblue;}
+        h1{
+            /* border: 1px solid red; */
+            text-align: center;
+            line-height: 3;
+            /* padding: 50px 0; */
+            color: whitesmoke;
+            text-shadow: 0 0 5px white;
+        }
+
+        .gallery{
+            /* border: 1px solid whitesmoke; */
+        }
+
+        .view{
+            width: 600px; 
+            height: 400px;
+            border: 10px solid whitesmoke;
+            margin: 0 auto;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .top_move{
+            position: absolute;
+            left: 0; top: 0;
+            width: 600px;
+            /* height: calc(400px * 6); 자녀 높이 들고와서 안써도 되나 구하고 싶으면 이렇게써*/
+        }
+
+        .top_move li{
+            width: 600px; 
+            height: 400px;
+        }
+
+        .control{
+            text-align: center;
+        }
+
+        .control button{
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+        }
+
+
+
+    </style>
+
+
+    <script src="js/jquery-3.7.1.js"></script>
+    <script lang="java">
+
+        $(function(){
+
+            // setInterval(function(){}, 2000)
+            var time = setInterval( top_moving , 3000);
+            
+            var n = 0; // 012345
+
+            function top_moving(){
+                if( n == 5){
+                    n=0;
+                }else{
+                    n++;
+                }
+                console.log(n);
+
+                positon = n * (-400) + "px";
+
+                $(".top_move").animate({top: n*(-400) + "px"}, 500)
+
+            }// function top_moving
+
+            
+            $(".top_move, .control button").hover(function(){
+                clearInterval(time);
+            },function(){
+                time = setInterval( top_moving , 3000);
+            })//hover
+
+            $(".prev").click(function(){
+                
+                down_moving();
+
+            })// prev
+
+            $(".next").click(function(){
+
+                top_moving();
+
+            })// next
+
+
+            function down_moving(){
+                if( n == 0){
+                    n=5;
+                }else{
+                    n--;
+                }
+                console.log(n);
+
+                positon = n * (-400) + "px";
+
+                $(".top_move").animate({top: positon }, 500)
+            }//
+
+
+
+
+        }) // jquery end
+    </script>
+
+
+
+</head>
+<body>
+
+    <h1>Top Slide Img</h1>
+
+    <div class="gallery">
+
+        <div class="view">
+            <ul class="top_move">
+                <li><a href="#"><img src="img/animal07.png" alt="animal07"></a></li>
+                <li><a href="#"><img src="img/animal09.png" alt="animal09"></a></li>
+                <li><a href="#"><img src="img/animal03.png" alt="animal03"></a></li>
+                <li><a href="#"><img src="img/animal04.png" alt="animal04"></a></li>
+                <li><a href="#"><img src="img/animal05.png" alt="animal05"></a></li>
+                <li><a href="#"><img src="img/animal06.png" alt="animal06"></a></li>
+            </ul><!-- top_move -->
+        </div><!-- view -->
+
+
+        <div class="control">
+            <button class="prev"> prev </button>
+            <button class="next"> next </button>
+        </div><!-- control -->
+
+        
+    </div><!-- gallery -->
+
+
+
+    
+</body>
+</html>
